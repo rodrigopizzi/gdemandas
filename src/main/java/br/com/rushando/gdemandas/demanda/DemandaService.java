@@ -1,4 +1,4 @@
-package br.com.rushando.gdemandas.service;
+package br.com.rushando.gdemandas.demanda;
 
 import java.util.Date;
 
@@ -7,11 +7,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.rushando.gdemandas.domain.Demanda;
-import br.com.rushando.gdemandas.domain.Demanda.Status;
-import br.com.rushando.gdemandas.domain.Demanda.Tamanho;
-import br.com.rushando.gdemandas.domain.Demanda.TamanhoObrigatiorException;
-import br.com.rushando.gdemandas.repository.DemandaRepository;
+import br.com.rushando.gdemandas.demanda.Demanda.Status;
+import br.com.rushando.gdemandas.demanda.Demanda.Tamanho;
+import br.com.rushando.gdemandas.demanda.Demanda.TamanhoObrigatiorException;
 
 @Service
 public class DemandaService {
@@ -39,6 +37,10 @@ public class DemandaService {
 		demanda.setTamanho(tamanho);
 		demanda.setPrazoOrcamento(prazoOrcamento);
 		return demandaRepository.save(demanda);
+	}
+
+	public Iterable<Demanda> listAll() {
+		return demandaRepository.findAll();
 	}
 	
 }

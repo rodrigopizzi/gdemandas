@@ -14,12 +14,12 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import br.com.rushando.gdemandas.domain.Demanda;
-import br.com.rushando.gdemandas.domain.Demanda.Status;
-import br.com.rushando.gdemandas.domain.Demanda.Tamanho;
-import br.com.rushando.gdemandas.domain.Demanda.TamanhoObrigatiorException;
-import br.com.rushando.gdemandas.repository.DemandaRepository;
-import br.com.rushando.gdemandas.service.DemandaService;
+import br.com.rushando.gdemandas.demanda.Demanda;
+import br.com.rushando.gdemandas.demanda.DemandaRepository;
+import br.com.rushando.gdemandas.demanda.DemandaService;
+import br.com.rushando.gdemandas.demanda.Demanda.Status;
+import br.com.rushando.gdemandas.demanda.Demanda.Tamanho;
+import br.com.rushando.gdemandas.demanda.Demanda.TamanhoObrigatiorException;
 
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest

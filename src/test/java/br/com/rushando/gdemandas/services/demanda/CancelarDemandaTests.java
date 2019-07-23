@@ -7,8 +7,8 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import br.com.rushando.gdemandas.repository.DemandaRepository;
-import br.com.rushando.gdemandas.service.DemandaService;
+import br.com.rushando.gdemandas.demanda.DemandaRepository;
+import br.com.rushando.gdemandas.demanda.DemandaService;
 
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest

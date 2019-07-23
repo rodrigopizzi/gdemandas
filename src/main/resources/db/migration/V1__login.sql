@@ -40,7 +40,10 @@ CREATE TABLE "demanda" (
   "titulo" varchar NOT NULL,
   "descr" varchar,
   "status" int NOT NULL,
-  "idcliente" int
+  "idcliente" int,
+  "data_cadastro" date,
+  "tamanho" int,
+  "prazo_orcamento" date
 );
 	
 CREATE SEQUENCE seq_demanda

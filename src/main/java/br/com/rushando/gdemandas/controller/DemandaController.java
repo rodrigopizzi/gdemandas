@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import br.com.rushando.gdemandas.demanda.DemandaService;
 
 @Controller
-@RequestMapping("demanda")
-public class DemandaController {
+@RequestMapping("/demanda")
+public class DemandaController extends MainController {
 	
 	@Autowired
 	private DemandaService service;
@@ -18,7 +18,7 @@ public class DemandaController {
 	@GetMapping("")
     public String greeting(Model model) {
 		model.addAttribute("demandas", service.listAll());
-        return "demanda/index";
+        return "/demanda/index";
     }
 
 }

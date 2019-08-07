@@ -38,7 +38,7 @@ INSERT INTO permissao(
 CREATE TABLE "demanda" (
   "iddemanda" int PRIMARY KEY,
   "titulo" varchar NOT NULL,
-  "descr" varchar,
+  "descricao" varchar,
   "status" int NOT NULL,
   "idcliente" int,
   "data_cadastro" date,

@@ -8,9 +8,9 @@
         <h1 class="h2">Lista de demandas</h1>
     </div>
 
-    <button type="button" class="btn btn-primary"><i class="fas fa-plus"></i></button>
-    <button type="button" class="btn btn-primary"><i class="fas fa-edit"></i></button>
-    <button type="button" class="btn btn-danger"><i class="fas fa-minus"></i></button>
+    <a class="btn btn-primary" th:href="@{/demanda/add}"><i class="fas fa-plus"></i></a>
+    <a class="btn btn-primary"><i class="fas fa-edit"></i></a>
+    <a class="btn btn-danger"><i class="fas fa-minus"></i></a>
 
     <br />
     <br />
@@ -29,7 +29,7 @@
                 <tr th:each="demanda : ${demandas}">
                     <td th:text=${demanda.id}></td>
                     <td th:text=${demanda.titulo}></td>
-                    <td th:text=${demanda.descr}></td>
+                    <td th:text=${demanda.descricao}></td>
                     <td th:text=${demanda.status}></td>
                 </tr>
             </tbody>

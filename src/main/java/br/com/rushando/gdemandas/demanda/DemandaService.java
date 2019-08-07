@@ -19,6 +19,7 @@ public class DemandaService {
 	
 	@Transactional
 	public Demanda cadastrarDemanda(Demanda demanda) {
+		demanda.setStatus(Status.Backlog);
 		return demandaRepository.save(demanda);
 	}
 

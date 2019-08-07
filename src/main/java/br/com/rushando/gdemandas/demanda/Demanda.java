@@ -29,7 +29,7 @@ public class Demanda {
 	
 	private String titulo;
 	
-	private String descr;
+	private String descricao;
 	
 	private Status status;
 	
@@ -59,6 +59,6 @@ public class Demanda {
 		public TamanhoObrigatiorException(String string) {
 			super(string);
 		}
-	}
+	}	
 	
 }

@@ -1,16 +1,24 @@
 package br.com.rushando.gdemandas.controller;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import br.com.rushando.gdemandas.dashboard.Menu;
+import br.com.rushando.gdemandas.dashboard.MenuPrincipal;
 
-public class MainController {
+@Component
+public abstract class MainController {
+
+	@Autowired
+	private MenuPrincipal menuPrincipal;
 
 	@ModelAttribute("menus")
-	public List<String> populateTypes() {
-	    return Arrays.asList("Menu Item 1", "Menu Item 2", "Menu 3");
+	public List<Menu> populateTypes() {
+		return menuPrincipal.getMenus();
 	}
 	
 }

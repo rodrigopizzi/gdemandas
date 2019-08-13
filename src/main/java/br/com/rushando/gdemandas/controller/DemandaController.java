@@ -9,12 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.rushando.gdemandas.demanda.Demanda;
 import br.com.rushando.gdemandas.demanda.DemandaService;
-import br.com.rushando.gdemandas.demanda.Demanda.Status;
 
 @Controller
 @RequestMapping("/demanda")
 public class DemandaController extends MainController {
-	
+
 	@Autowired
 	private DemandaService service;
 	
@@ -35,4 +34,6 @@ public class DemandaController extends MainController {
 		service.cadastrarDemanda(demanda);
 		return "redirect:/demanda";
     }
+
+	
 }

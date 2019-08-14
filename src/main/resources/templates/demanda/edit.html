@@ -7,6 +7,7 @@
 
 <body id="mainContent">
   <form method="POST" th:action="@{/demanda/add}" th:object="${demanda}">
+    <input type="hidden" th:field="*{id}" />
     <div class="form-group">
       <label for="titulo">Titulo</label>
       <input type="text" th:field="*{titulo}" class="form-control" id="titulo" aria-describedby="textHelp"

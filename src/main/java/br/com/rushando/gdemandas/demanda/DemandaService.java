@@ -12,18 +12,17 @@ import br.com.rushando.gdemandas.demanda.Demanda.Tamanho;
 import br.com.rushando.gdemandas.demanda.Demanda.TamanhoObrigatiorException;
 
 @Service
+@Transactional
 public class DemandaService {
 
 	@Autowired
 	private DemandaRepository demandaRepository;
 	
-	@Transactional
 	public Demanda cadastrarDemanda(Demanda demanda) {
 		demanda.setStatus(Status.Backlog);
 		return demandaRepository.save(demanda);
 	}
 
-	@Transactional
 	public Demanda classificarDemanda(Long idDemanda, Tamanho tamanho, Date prazoOrcamento) throws Exception {
 		Demanda demanda = demandaRepository.findById(idDemanda).get();
 		
@@ -42,6 +41,17 @@ public class DemandaService {
 
 	public Iterable<Demanda> listAll() {
 		return demandaRepository.findAll();
+	}
+
+	public Demanda getById(Long idDemanda) {
+		return demandaRepository.findById(idDemanda)
+			.orElseThrow(() -> new RuntimeException(
+				String.format("Demanda não encontrada (%d).", idDemanda))
+			);
+	}
+
+	public void delete(Long idDemanda) {
+		demandaRepository.deleteById(idDemanda);
 	}
 	
 }

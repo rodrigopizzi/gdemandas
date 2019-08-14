@@ -73,6 +73,15 @@
                         text: '<i class="far fa-file-excel"></i>'
                     },
 
+                    {
+                        extend: 'selectedSingle',
+                        className: 'none',
+                        text: '<i class="fas fa-sort-numeric-up"></i> Classificar',
+                        action: function (e, dt, button, config) {
+                            window.location = "/demanda/classificar/" + dt.row({ selected: true }).data()[0];
+                        }
+                    },
+
                 ]
             });
         });

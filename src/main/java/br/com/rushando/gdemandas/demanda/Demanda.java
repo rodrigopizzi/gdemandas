@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = {"id"})
-public class Demanda {
+class Demanda {
 
 	@Id
 	@Column(name = "iddemanda")

@@ -1,7 +1,5 @@
 package br.com.rushando.gdemandas.controller;
 
-import javax.annotation.security.RolesAllowed;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import br.com.rushando.gdemandas.demanda.Demanda;
+import br.com.rushando.gdemandas.demanda.DemandaDTO;
 import br.com.rushando.gdemandas.demanda.DemandaService;
 
 @Controller
@@ -29,31 +27,39 @@ public class DemandaController extends MainController {
 	
 	@GetMapping("add")
     public String add(Model model) {
-		model.addAttribute("demanda", new Demanda());
+		model.addAttribute("demanda", new DemandaDTO());
+		model.addAttribute("action", "/demanda/add");
 		return "/demanda/edit";
     }
 	
 	@PostMapping("add")
-    public String add(Demanda demanda) {
-		service.cadastrarDemanda(demanda);
+    public String add(DemandaDTO demanda) {
+		service.cadastrar(demanda);
 		return "redirect:/demanda";
 	}
 	
 	@GetMapping("edit/{iddemanda}")
     public String edit(@PathVariable("iddemanda") Long idDemanda, Model model) {
-		model.addAttribute("demanda", service.getById(idDemanda));
+		model.addAttribute("demanda", service.demandaDTOById(idDemanda));
+		model.addAttribute("action", "/demanda/edit");
 		return "/demanda/edit";
+	}
+
+	@PostMapping("edit")
+    public String edit(DemandaDTO demanda) {
+		service.editar(demanda);
+		return "redirect:/demanda";
 	}
 	
 	@PostMapping("delete")
 	public String delete(@RequestParam("id") Long idDemanda) {
-		service.delete(idDemanda);
+		service.deletar(idDemanda);
 		return "redirect:/demanda";
 	}
 
 	@GetMapping("classificar/{iddemanda}")
     public String classificar(@PathVariable("iddemanda") Long idDemanda, Model model) {
-		model.addAttribute("demanda", service.getById(idDemanda));
+		model.addAttribute("demanda", service.classificarDTOById(idDemanda));
 		return "/demanda/classificar";
 	}
 

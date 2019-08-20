@@ -1,6 +1,7 @@
 package br.com.rushando.gdemandas.demanda;
 
 import java.util.Date;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -18,12 +19,28 @@ public class DemandaService {
 	@Autowired
 	private DemandaRepository demandaRepository;
 	
-	public Demanda cadastrarDemanda(Demanda demanda) {
-		demanda.setStatus(Status.Backlog);
-		return demandaRepository.save(demanda);
+	public Demanda cadastrar(DemandaDTO demanda) {
+		Demanda d = new Demanda();
+		d.setDataCadastro(new Date());
+		d.setDescricao(demanda.getDescricao());
+		d.setTitulo(demanda.getTitulo());
+		d.setStatus(Status.Backlog);
+
+		return demandaRepository.save(d);
 	}
 
-	public Demanda classificarDemanda(Long idDemanda, Tamanho tamanho, Date prazoOrcamento) throws Exception {
+	public Demanda editar(DemandaDTO demanda) {
+		Demanda d = demandaRepository.findById(demanda.getId()).get();
+		d.setTitulo(demanda.getTitulo());
+		d.setDescricao(demanda.getDescricao());
+		return demandaRepository.save(d);
+	}
+
+	public void deletar(Long idDemanda) {
+		demandaRepository.deleteById(idDemanda);
+	}
+
+	public Demanda classificar(Long idDemanda, Tamanho tamanho, Date prazoOrcamento) throws Exception {
 		Demanda demanda = demandaRepository.findById(idDemanda).get();
 		
 		if (! demanda.getStatus().equals(Status.Backlog)) {
@@ -43,15 +60,24 @@ public class DemandaService {
 		return demandaRepository.findAll();
 	}
 
-	public Demanda getById(Long idDemanda) {
-		return demandaRepository.findById(idDemanda)
+	public DemandaDTO demandaDTOById(Long idDemanda) {
+		Demanda d = demandaRepository.findById(idDemanda)
 			.orElseThrow(() -> new RuntimeException(
 				String.format("Demanda não encontrada (%d).", idDemanda))
 			);
+		return new DemandaDTO(d);
 	}
 
-	public void delete(Long idDemanda) {
-		demandaRepository.deleteById(idDemanda);
+	public ClassificarDTO classificarDTOById(Long idDemanda) {
+		Demanda d = demandaRepository.findById(idDemanda)
+			.orElseThrow(() -> new RuntimeException(
+				String.format("Demanda não encontrada (%d).", idDemanda))
+			);
+		return new ClassificarDTO(d);
 	}
+
+	
+
+	
 	
 }

@@ -2,6 +2,8 @@ package br.com.rushando.gdemandas.demanda;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import br.com.rushando.gdemandas.demanda.Demanda.Tamanho;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +20,7 @@ public class ClassificarDTO {
     private String titulo;
     private String descricao;
     private Tamanho tamanho;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date prazoOrcamento;
 
     public ClassificarDTO(Demanda demanda) {

@@ -6,7 +6,6 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import br.com.rushando.gdemandas.demanda.Demanda.TamanhoObrigatiorException;
 import br.com.rushando.gdemandas.demanda.DemandaService;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -47,7 +46,7 @@ public class ClassificarDemandaTests {
 //		Assert.assertEquals("O Status deverá estar como classificado", Status.Classificado, demandaClassificada.getStatus());
 	}
 	
-	@Test(expected = TamanhoObrigatiorException.class)
+	@Test(expected = Exception.class)
 	public void classificarDemandaSemTamanho() throws Exception {
 //		Mockito.when(demandaRepository.findById(1L)).then(new Answer<Optional<Demanda>>() {
 //			@Override

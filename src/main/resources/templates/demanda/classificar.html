@@ -5,7 +5,7 @@
 </div>
 
 <body id="mainContent">
-  <form method="POST" th:action="@{/demanda/add}" th:object="${demanda}">
+  <form method="POST" th:action="@{/demanda/classificar}" th:object="${demanda}">
     <input type="hidden" th:field="*{id}" />
     <div class="form-group">
       <label for="titulo">Titulo</label>
@@ -14,11 +14,11 @@
       </div>
     <div class="form-group">
       <label for="exampleFormControlSelect1">Tamanho</label>
-      <select class="form-control" id="exampleFormControlSelect1">
-        <option>Pequeno</option>
-        <option>Médio</option>
-        <option>Grande</option>
-        <option>Enorme</option>
+      <select th:field="*{tamanho}" class="form-control" id="exampleFormControlSelect1">
+        <option value="Pequeno">Pequeno</option>
+        <option value="Medio">Médio</option>
+        <option value="Grande">Grande</option>
+        <option value="Enorme">Enorme</option>
       </select>
     </div>
     <div class="form-group">

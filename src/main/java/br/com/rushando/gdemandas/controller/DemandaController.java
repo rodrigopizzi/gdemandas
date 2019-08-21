@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import br.com.rushando.gdemandas.demanda.ClassificarDTO;
 import br.com.rushando.gdemandas.demanda.DemandaDTO;
 import br.com.rushando.gdemandas.demanda.DemandaService;
 
@@ -33,8 +34,8 @@ public class DemandaController extends MainController {
     }
 	
 	@PostMapping("add")
-    public String add(DemandaDTO demanda) {
-		service.cadastrar(demanda);
+    public String add(DemandaDTO dto) {
+		service.cadastrar(dto);
 		return "redirect:/demanda";
 	}
 	
@@ -46,8 +47,8 @@ public class DemandaController extends MainController {
 	}
 
 	@PostMapping("edit")
-    public String edit(DemandaDTO demanda) {
-		service.editar(demanda);
+    public String edit(DemandaDTO dto) {
+		service.editar(dto);
 		return "redirect:/demanda";
 	}
 	
@@ -61,6 +62,12 @@ public class DemandaController extends MainController {
     public String classificar(@PathVariable("iddemanda") Long idDemanda, Model model) {
 		model.addAttribute("demanda", service.classificarDTOById(idDemanda));
 		return "/demanda/classificar";
+	}
+
+	@PostMapping("classificar")
+    public String classificar(ClassificarDTO dto) throws Exception {
+		service.classificar(dto);
+		return "redirect:/demanda";
 	}
 
 	

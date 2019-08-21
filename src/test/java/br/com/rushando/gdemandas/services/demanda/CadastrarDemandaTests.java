@@ -1,17 +1,11 @@
 package br.com.rushando.gdemandas.services.demanda;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.stubbing.Answer;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import br.com.rushando.gdemandas.demanda.Demanda;
 import br.com.rushando.gdemandas.demanda.DemandaService;
 
 @RunWith(MockitoJUnitRunner.class)

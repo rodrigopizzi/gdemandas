@@ -51,14 +51,6 @@ class Demanda {
 	
 	public static enum Tamanho {
 		Pequeno, Medio, Grande, Enorme 
-	}
-	
-	public static class TamanhoObrigatiorException extends Exception {
-		private static final long serialVersionUID = 1L;
-
-		public TamanhoObrigatiorException(String string) {
-			super(string);
-		}
 	}	
 	
 }

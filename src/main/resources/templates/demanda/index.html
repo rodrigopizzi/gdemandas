@@ -32,7 +32,7 @@
 
     <script>
         $(document).ready(function () {
-            $('#myTable').DataTable({
+            var table = $('#myTable').DataTable({
                 select: true,
                 paging: false,
                 dom: 'Bfrtip',
@@ -84,6 +84,19 @@
 
                 ]
             });
+
+            table.on( 'select deselect', function () {
+                var count = table.rows( { selected: true } ).count();
+                if (count != 1) return;
+
+                var status = table.row( { selected: true } ).data()[3];
+        
+                if (status == 'Backlog') {
+                    table.button(5).enable(true);
+                } else {
+                    table.button(5).enable(false);
+                }
+            } );
         });
     </script>
 

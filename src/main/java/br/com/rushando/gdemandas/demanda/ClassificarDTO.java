@@ -20,7 +20,7 @@ public class ClassificarDTO {
     private String titulo;
     private String descricao;
     private Tamanho tamanho;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date prazoOrcamento;
 
     public ClassificarDTO(Demanda demanda) {

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.rushando.gdemandas.demanda.Demanda.Status;
+import br.com.rushando.gdemandas.util.DefaultClientException;
 
 @Service
 @Transactional
@@ -37,19 +38,19 @@ public class DemandaService {
 		demandaRepository.deleteById(idDemanda);
 	}
 
-	public Demanda classificar(ClassificarDTO dto) throws Exception {
+	public Demanda classificar(ClassificarDTO dto) throws DefaultClientException {
 		Demanda demanda = demandaRepository.findById(dto.getId()).get();
 		
 		if (! demanda.getStatus().equals(Status.Backlog)) {
-			throw new Exception("A demanda deve estar com o status Backlog para ser classificada.");
+			throw new DefaultClientException("A demanda deve estar com o status Backlog para ser classificada.");
 		}
 		
 		if (dto.getTamanho() == null) {
-			throw new Exception("O tamanho não pode ser vazio");
+			throw new DefaultClientException("O tamanho não pode ser vazio");
 		}
 
 		if (dto.getPrazoOrcamento() == null) {
-			throw new Exception("O prazo não pode ser vazio");
+			throw new DefaultClientException("O prazo não pode ser vazio");
 		}
 		
 		demanda.setTamanho(dto.getTamanho());

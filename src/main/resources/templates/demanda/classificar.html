@@ -1,34 +1,70 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="/fragments/main-layout :: layout(~{::#title}, ~{::#mainContent})">
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="/fragments/main-layout :: layout(~{::#title}, ~{::#mainContent})">
 
-<div id="title" th:text="${demanda.titulo}">
-</div>
+<div id="title" th:text="${demanda.titulo}"></div>
 
 <body id="mainContent">
-  <form method="POST" th:action="@{/demanda/classificar}" th:object="${demanda}">
-    <input type="hidden" th:field="*{id}" />
-    <div class="form-group">
-      <label for="titulo">Titulo</label>
-      <input disabled type="text" th:field="*{titulo}" class="form-control" id="titulo" aria-describedby="textHelp"
-        placeholder="PRD-0000-00">
-      </div>
-    <div class="form-group">
-      <label for="exampleFormControlSelect1">Tamanho</label>
-      <select th:field="*{tamanho}" class="form-control" id="exampleFormControlSelect1">
-        <option value="Pequeno">Pequeno</option>
-        <option value="Medio">Médio</option>
-        <option value="Grande">Grande</option>
-        <option value="Enorme">Enorme</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="descricao">Prazo para orçamento</label>
-      <input type="date" th:field="*{prazoOrcamento}" class="form-control" id="descricao"
-        th:placeholder="*{prazoOrcamento}">
-      <small id="textHelp" class="form-text text-muted">Prazo combinado para retornar a demanda para o cliente</small>
-    </div>
-    <button type="submit" class="btn btn-primary">Salvar</button>
-  </form>
+	<form method="POST" th:action="@{/demanda/classificar}"
+		th:object="${demanda}">
+		<input type="hidden" th:field="*{id}" />
+		<div class="form-group">
+			<label for="titulo">Titulo</label> <input disabled type="text"
+				th:field="*{titulo}" class="form-control" id="titulo"
+				aria-describedby="textHelp" placeholder="PRD-0000-00">
+		</div>
+		<div class="form-group">
+			<label for="exampleFormControlSelect1">Tamanho</label> <select
+				th:field="*{tamanho}" class="form-control"
+				id="exampleFormControlSelect1">
+				<option value="Pequeno">Pequeno</option>
+				<option value="Medio">Médio</option>
+				<option value="Grande">Grande</option>
+				<option value="Enorme">Enorme</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="descricao">Prazo para orçamento</label> <input
+				type="text" th:field="*{prazoOrcamento}" class="form-control"
+				id="descricao" th:placeholder="*{prazoOrcamento}"> <small
+				id="textHelp" class="form-text text-muted">Prazo combinado
+				para retornar a demanda para o cliente</small>
+		</div>
+		<button type="submit" class="btn btn-primary">Salvar</button>
+	</form>
+
+	<script type="text/javascript">
+		$('#descricao').datepicker({
+			language : "pt-BR",
+			format: "dd/mm/yyyy"
+		});
+	</script>
+
+	<div th:if="${error}">
+
+		<div class="modal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">
+							<i class="fas fa-exclamation-circle"></i> Erro
+						</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p th:text="${error}"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			$('.modal').modal('show');
+		</script>
+	</div>
 </body>
 
 </html>

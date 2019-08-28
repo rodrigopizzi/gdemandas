@@ -1,5 +1,7 @@
 package br.com.rushando.gdemandas.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import br.com.rushando.gdemandas.demanda.ClassificarDTO;
 import br.com.rushando.gdemandas.demanda.DemandaDTO;
 import br.com.rushando.gdemandas.demanda.DemandaService;
+import br.com.rushando.gdemandas.util.DefaultClientException;
 
 @Controller
 @RequestMapping("/demanda")
 public class DemandaController extends MainController {
+	
+	Logger logger = LoggerFactory.getLogger(DemandaController.class);
 
 	@Autowired
 	private DemandaService service;
@@ -65,8 +70,15 @@ public class DemandaController extends MainController {
 	}
 
 	@PostMapping("classificar")
-    public String classificar(ClassificarDTO dto) throws Exception {
-		service.classificar(dto);
+    public String classificar(ClassificarDTO dto, Model model) {
+		try {
+			service.classificar(dto);
+		} catch (DefaultClientException e) {
+			logger.error(e.getMessage(), e);
+			model.addAttribute("error", e.getMessage());
+			
+			return classificar(dto.getId(), model);
+		}
 		return "redirect:/demanda";
 	}
 

@@ -72,16 +72,22 @@
                         extend: 'excelHtml5',
                         text: '<i class="far fa-file-excel"></i>'
                     },
-
                     {
                         extend: 'selectedSingle',
                         className: 'none',
-                        text: '<i class="fas fa-sort-numeric-up"></i> Classificar',
+                        text: '<i class="fas fa-arrow-circle-left"></i> Voltar Etapa',
+                        action: function (e, dt, button, config) {
+                            window.location = "/demanda/voltar-etapa/" + dt.row({ selected: true }).data()[0];
+                        }
+                    },
+                    {
+                        extend: 'selectedSingle',
+                        className: 'none',
+                        text: '<i class="fas fa-arrow-circle-right"></i> Avançar Etapa',
                         action: function (e, dt, button, config) {
                             window.location = "/demanda/classificar/" + dt.row({ selected: true }).data()[0];
                         }
                     },
-
                 ]
             });
 
@@ -91,10 +97,27 @@
 
                 var status = table.row( { selected: true } ).data()[3];
         
-                if (status == 'Backlog') {
-                    table.button(5).enable(true);
-                } else {
-                    table.button(5).enable(false);
+                var back = table.button(5);
+                var next = table.button(6);
+                next.enable(true);
+                window.next = next;
+                
+                switch (status) {
+                  case 'Backlog':
+                	  back.enable(false);
+                	  next.text('<i class="fas fa-sort-numeric-up"></i> Classificar');
+                	  next.action(function (e, dt, button, config) {
+                          window.location = "/demanda/classificar/" + dt.row({ selected: true }).data()[0];
+                      });
+                    break;
+                  case 'Classificado':
+                	next.text('<i class="fas fa-user-check"></i> Assumir Escopo');
+                	next.action(function (e, dt, button, config) {
+                        window.location = "/demanda/assumir-escopo/" + dt.row({ selected: true }).data()[0];
+                    });
+                    break;
+                  default:
+                    console.log('outros');
                 }
             } );
         });
